@@ -1,5 +1,6 @@
-# COURSENAME
-This is the repository for the LinkedIn Learning course `course-name`. The full course is available from [LinkedIn Learning][lil-course-url].
+# Claude Agents: Build a Multi-Agent Research System in 7 Days
+
+This is the repository for the LinkedIn Learning course `Claude Agents: Build a Multi-Agent Research System in 7 Days`. The full course is available from [LinkedIn Learning][lil-course-url].
 
 ![course-name-alt-text][lil-thumbnail-url] 
 
