@@ -83,6 +83,7 @@ async def run_research(request: str) -> None:
 if __name__ == "__main__":
     asyncio.run(
         run_research(
-            #TODO: Give the system a research question with multiple distinct subtasks.
+            "Compare the current state of solid-state batteries and "
+            "sodium-ion batteries for electric vehicles."
         )
     )
