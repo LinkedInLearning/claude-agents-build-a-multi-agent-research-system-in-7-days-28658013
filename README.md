@@ -2,33 +2,70 @@
 
 This is the repository for the LinkedIn Learning course `Claude Agents: Build a Multi-Agent Research System in 7 Days`. The full course is available from [LinkedIn Learning][lil-course-url].
 
+Research work breaks single agents fast. Ask one prompt to search, analyze, synthesize, and cite, and quality collapses at every step. The fix is a team: a coordinator agent delegating to specialists that each do one job well. Over seven days, you build that team with the Claude Agent SDK, one agent at a time, and finish with a five-agent system that produces comprehensive, cited research reports and refines its own work.
+
 ![course-name-alt-text][lil-thumbnail-url] 
 
-_See the readme file in the main branch for updated instructions and information._
-## Instructions
-This repository has branches for each of the videos in the course. You can use the branch pop up menu in github to switch to a specific branch and take a look at the course at that stage, or you can add `/tree/BRANCH_NAME` to the URL to go to the branch you want to access.
+## What You Build
+ 
+- **Day 1:** A web search agent, your first specialist
+- **Day 2:** An analysis agent and a structured-output contract between the two
+- **Day 3:** A coordinator that delegates work across the team
+- **Day 4:** A synthesis agent with an explicit conflict-resolution policy
+- **Day 5:** A report agent that produces cited Markdown reports
+- **Day 6:** Context management, validation, and failure recovery
+- **Day 7:** An evaluation and refinement loop that grades the report and fills its gaps
+## Before You Start
+ 
+You need three things:
+ 
+1. **Python 3.10 or later.** Check with `python3 --version`.
+2. **An Anthropic API key.** Create one in the [Claude Console](https://platform.claude.com/). New accounts include trial credits; after that, expect roughly a few dollars in API usage across the full seven days. Day 7's refinement loop is the most expensive single run.
+3. **Basic Python.** Async concepts are explained as they appear.
+## Setup
+ 
+Clone this repository, then from its root:
+ 
+```bash
+python3 -m venv .venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+export ANTHROPIC_API_KEY=your-key-here   # Windows: set ANTHROPIC_API_KEY=your-key-here
+```
+ 
+The Claude Code CLI ships bundled with the SDK package, so there is nothing else to install.
+ 
+To confirm your setup works, run the Day 1 finished agent:
+ 
+```bash
+python DAY01/day01_end.py
+```
+ 
+If you see search results stream in, followed by a turn count and cost, you are ready.
+ 
+## Repository Structure
+ 
+Each day has a folder `DAY0X` folder with `begin` and `end` files :
+ 
+- **begin** is the code as it stands at the start of that day's video. Every later day begins where the previous day ended.
+- **end** is the completed code from that day's video, and your reference if you get stuck during a challenge.
+ 
+Two files worth flagging:
+ 
+- `DAY02/day02_begin.py` is broken **on purpose**. The Day 2 challenge is to diagnose and fix it. Do not fix it by peeking at `DAY02/day02_end.py`, at least not on the first try.
+- `DAY07/day07_end.py` is the complete system: five agents, validation, retry logic, and the refinement loop. The final challenge extends it with a sixth agent you design.
+## Working Through a Day
+ 
+1. Watch the day's video and build along in the `begin` file.
+2. Complete the day's challenge from the course.
+3. Compare against `end` if you need it.
+4. Share your Daily Win on the [Kesha on AI page](https://www.linkedin.com/company/kesha-on-ai/) with **#7DayClaude**.
 
-## Branches
-The branches are structured to correspond to the videos in the course. The naming convention is `CHAPTER#_MOVIE#`. As an example, the branch named `02_03` corresponds to the second chapter and the third video in that chapter. 
-Some branches will have a beginning and an end state. These are marked with the letters `b` for "beginning" and `e` for "end". The `b` branch contains the code as it is at the beginning of the movie. The `e` branch contains the code as it is at the end of the movie. The `main` branch holds the final state of the code when in the course.
-
-When switching from one exercise files branch to the next after making changes to the files, you may get a message like this:
-
-    error: Your local changes to the following files would be overwritten by checkout:        [files]
-    Please commit your changes or stash them before you switch branches.
-    Aborting
-
-To resolve this issue:
-	
-    Add changes to git using this command: git add .
-	Commit changes using this command: git commit -m "some message"
-
-## Installing
-1. To use these exercise files, you must have the following installed:
-	- [list of requirements for course]
-2. Clone this repository into your local machine using the terminal (Mac), CMD (Windows), or a GUI tool like SourceTree.
-3. [Course-specific instructions]
-
+Reports generated by Days 5 through 7 are written to `report.md` in whatever folder you run from. 
+ 
+## Costs and Care
+ 
+Every script in this repository makes real API calls that cost real money. Every agent carries a turn cap, and Days 6 and 7 add budget controls, but you should still watch the cost line each script prints at the end of a run. If you experiment with turn caps or refinement rounds, raise them gradually.
 
 [0]: # (Replace these placeholder URLs with actual course URLs)
 

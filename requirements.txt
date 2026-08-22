@@ -1,2 +1,4 @@
-# Specify Python package requirements for your project here (e.g., Mako==1.1.1). If your project doesn't require these, you can leave this file unchanged or delete it.
-claude-agent-sdk
+# Claude Agents: Build a Multi-Agent Research System in 7 Days
+# Python 3.10 or later required.
+# The Claude Code CLI is bundled with this package. No separate install needed.
+claude-agent-sdk>=0.1.0
