@@ -112,8 +112,7 @@ async def run_research(request: str) -> None:
 if __name__ == "__main__":
     asyncio.run(
         run_research(
-            "Does working from the office or working remotely produce better outcomes for junior "
-            " developers specifically? Research the evidence on mentorship, skill growth, and "
-            " early-career advancement."
+            "Is remote work good or bad for software team productivity? "
+            "Research the evidence on both sides."
         )
     )
