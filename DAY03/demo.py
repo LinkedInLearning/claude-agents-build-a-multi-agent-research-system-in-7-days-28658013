@@ -63,6 +63,9 @@ async def run_research(request: str) -> None:
         },
         allowed_tools=["Agent","WebSearch"],
         setting_sources=[],
+        max_budget_usd=4.00,
+        model="claude-sonnet-5",
+        fallback_model="claude-haiku-4-5-20251001",
         max_turns=30,
     )
 

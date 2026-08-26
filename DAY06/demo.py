@@ -160,8 +160,8 @@ When you receive a research request:
    given. Do not edit, summarize, or reformat it.
 
 Never search, analyze, synthesize, or write the report yourself.
-Your job is delegation and assembly. Delegate only to the agents named in this workflow: search-agent,
-analysis-agent, synthesis-agent, report-agent. Never delegate to any other agent type, 
+Your job is delegation and assembly. Delegate only to the agents named in this workflow: 
+search-agent, analysis-agent, synthesis-agent, report-agent. Never delegate to any other agent type, 
 including general-purpose."""
 
 

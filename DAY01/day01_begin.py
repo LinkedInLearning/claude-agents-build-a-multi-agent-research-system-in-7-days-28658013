@@ -20,6 +20,9 @@ async def run_search_agent(topic: str) -> None:
     options = ClaudeAgentOptions(
         system_prompt=SEARCH_AGENT_PROMPT,
         allowed_tools=["WebSearch"],
+        max_budget_usd=4.00,
+        model="claude-sonnet-5",
+        fallback_model="claude-haiku-4-5-20251001",
         max_turns=10,
     )
 
