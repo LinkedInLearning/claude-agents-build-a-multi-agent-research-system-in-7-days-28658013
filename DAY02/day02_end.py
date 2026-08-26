@@ -24,9 +24,9 @@ SEARCH_SCHEMA = {
 }
 
 SEARCH_AGENT_PROMPT = """You are a research search agent.
-Search the web for the topic you are given.
-Find at least five distinct, credible sources.
-"""
+                      Your job: search the web for the topic you are given.
+                      Find at least five distinct, credible sources.
+                      Do not analyze or draw conclusions. Just search and report."""
 
 ANALYSIS_AGENT_PROMPT = """You are a research analysis agent.
                         You receive a JSON object containing sources found by a search agent.

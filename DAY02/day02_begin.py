@@ -1,55 +1,40 @@
 import asyncio
+import json
 from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
 
 SEARCH_AGENT_PROMPT = """You are a research search agent.
-Search the web for the topic you are given.
-Find at least five distinct, credible sources.
-Write up your findings in a readable report for your teammate."""
-
-ANALYSIS_AGENT_PROMPT = """You are a research analysis agent.
-You receive a JSON object containing sources found by a search agent.
-Extract the key findings:
-- The main claims that appear across multiple sources
-- Points where sources disagree
-- Gaps the sources do not cover
-Do not search the web. Work only from the sources you are given."""
-
+                      Your job: search the web for the topic you are given.
+                      Return your findings as a list. For each finding include:
+                      - The source title and URL
+                      - A two-sentence summary of what the source says
+                      Find at least five distinct, credible sources.
+                      Do not analyze or draw conclusions. Just search and report."""
 
 async def run_search(topic: str) -> str:
+    """Run the search agent. Returns validated, structured results."""
     options = ClaudeAgentOptions(
         system_prompt=SEARCH_AGENT_PROMPT,
         allowed_tools=["WebSearch"],
         max_budget_usd=4.00,
         model="claude-sonnet-5",
         fallback_model="claude-haiku-4-5-20251001",
-        max_turns=10,
+        max_turns=10
     )
-    results = ""
+    output = None
+    
     async for message in query(prompt=topic, options=options):
         if isinstance(message, ResultMessage):
-            results = message.result or ""
-    return results
+            output = message.result
 
-
-async def run_analysis(search_results: str) -> str:
-    options = ClaudeAgentOptions(
-        system_prompt=ANALYSIS_AGENT_PROMPT,
-        max_turns=3,
-    )
-    prompt = "Analyze these search results:\n" + search_results[:2000]
-    findings = ""
-    async for message in query(prompt=prompt, options=options):
-        if isinstance(message, ResultMessage):
-            findings = message.result or ""
-    return findings
-
+    if output is None:
+        raise RuntimeError("Search agent returned no output")
+    return output
 
 async def main():
-    topic = "The adoption of passkeys as a password replacement"
+    topic = "The current state of small modular nuclear reactors"
+    print("Search agent working...\n")
     results = await run_search(topic)
-    findings = await run_analysis(results)
-    print(findings)
-
+    print(results)
 
 if __name__ == "__main__":
     asyncio.run(main())
