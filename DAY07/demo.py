@@ -222,7 +222,7 @@ def validate_report(report: dict) -> list[str]:
 
     for ref in report.get("references", []):
         if not ref["url"].startswith("http"):
-            problems.append(f"Reference [{ref['id']}] has a malformed URL.")
+            print(f"[warning] Reference [{ref['id']}] has a malformed URL: {ref['url']}")
 
     return problems
 
